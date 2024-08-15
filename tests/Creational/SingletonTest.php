@@ -10,8 +10,7 @@ class SingletonTest extends TestCase
     public function testOnlyOneInstanceExists()
     {
         $singleton = Singleton::getInstance();
-        $singleton->setConfig('first singleton');
 
-        $this->assertSame($singleton->getConfig(), Singleton::getInstance()->getConfig());
+        $this->assertSame($singleton, Singleton::getInstance());
     }
 }

@@ -2,13 +2,17 @@
 
 namespace Creational\Singleton;
 
+use Exception;
+
 class Singleton
 {
     private static Singleton $instance;
 
-    private string $config;
-
-    protected function __construct() {}
+    private function __construct() {}
+    private function __clone() {}
+    public function __wakeup() {
+        throw new Exception("Cannot unserialize a singleton.");
+    }
 
     public static function getInstance(): Singleton
     {
@@ -17,15 +21,5 @@ class Singleton
         }
 
         return self::$instance;
-    }
-
-    public function getConfig(): string
-    {
-        return $this->config;
-    }
-
-    public function setConfig(string $config): void
-    {
-        $this->config = $config;
     }
 }
